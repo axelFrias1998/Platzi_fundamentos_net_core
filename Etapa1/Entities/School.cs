@@ -9,7 +9,7 @@ namespace Etapa1.Entities
         }*/
 
         //Igualación por tuplas
-        public School(string name, int creationYear) => (Name, CreationYear) = (name, creationYear);
+        public School(string name, int foundationYear) => (Name, FoundationYear) = (name, foundationYear);
 
         string name;
 
@@ -19,10 +19,18 @@ namespace Etapa1.Entities
             set { name = value.ToUpper(); }
         }
 
-        public int CreationYear { get; set; }
+        public int FoundationYear { get; set; }
 
         public string City { get; set; }
 
         public string Country { get; set; }
+
+        public SchoolTypes SchoolType { get; set; }
+
+        
+        public override string ToString()
+        {
+            return $"Name: {Name}\nType: {SchoolType}\nCountry: {Country}\nFoundation Year: {FoundationYear}";
+        }
     }
 }

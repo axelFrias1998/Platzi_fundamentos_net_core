@@ -8,7 +8,8 @@ namespace Etapa1
         static void Main(string[] args)
         {
             School school = new School("Banting", 2001);
-            Console.WriteLine(school.Name);
+            school.SchoolType = SchoolTypes.Elementary;
+            Console.WriteLine(school);
         }
     }
 }
