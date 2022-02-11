@@ -1,4 +1,4 @@
-namespace Etapa1.Entities
+namespace Etapa2.Entities
 {
     class School
     {

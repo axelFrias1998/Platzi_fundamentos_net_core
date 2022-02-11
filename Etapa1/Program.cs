@@ -9,7 +9,10 @@ namespace Etapa1
         {
             School school = new School("Banting", 2001);
             school.SchoolType = SchoolTypes.Elementary;
-            Console.WriteLine(school);
+            Console.WriteLine(school + System.Environment.NewLine);
+
+            School secondSchool = new School("RFM", 1980, SchoolTypes.HighSchool, country: "México", city: "Ciudad de México");
+            Console.WriteLine(secondSchool);
         }
     }
 }
