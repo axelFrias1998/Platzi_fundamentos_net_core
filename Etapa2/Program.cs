@@ -27,14 +27,46 @@ namespace Etapa2
             {
                 Name = "301"
             };
-            System.Console.WriteLine("==============================");
-            PrintCourses(coursesArray);
+            Console.WriteLine("==============================\nFor each:");
+            PrintCoursesForEach(coursesArray);
+            Console.WriteLine("==============================\nFor:");
+            PrintCoursesFor(coursesArray);
+            Console.WriteLine("==============================\nWhile:");
+            PrintCoursesWhile(coursesArray);
+            Console.WriteLine("==============================\nDo while:");
+            PrintCoursesDoWhile(coursesArray);
         }
 
-        private static void PrintCourses(Course[] coursesArray)
+        private static void PrintCoursesForEach(Course[] coursesArray)
         {
             foreach (Course course in coursesArray)
                 Console.WriteLine($"Name: {course.Name}, ID: {course.CourseId}");
+        }
+
+        private static void PrintCoursesWhile(Course[] coursesArray)
+        {
+            int count = 0;
+            while (count < coursesArray.Length)
+            {
+                Console.WriteLine($"Name: {coursesArray[count].Name}, ID: {coursesArray[count].CourseId}");
+                count++;
+            }
+        }
+
+        private static void PrintCoursesDoWhile(Course[] coursesArray)
+        {
+            int count = 0;
+            do
+            {
+                Console.WriteLine($"Name: {coursesArray[count].Name}, ID: {coursesArray[count].CourseId}");  
+                count++;              
+            } while (count < coursesArray.Length);
+        }
+
+        private static void PrintCoursesFor(Course[] coursesArray)
+        {
+            for (int i = 0; i < coursesArray.Length; i++)
+                Console.WriteLine($"Name: {coursesArray[i].Name}, ID: {coursesArray[i].CourseId}");
         }
     }
 }
