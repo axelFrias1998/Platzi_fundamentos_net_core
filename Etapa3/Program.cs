@@ -36,16 +36,18 @@ namespace Etapa3
                 new Course() { Name = "502", WorkTimeType = WorkTimeTypes.Evening }
             };
             school.Courses.AddRange(extraMorningCourses);
-
-            //Course tmpCourse = new Course {
-            //    Name = "101-Vacacional",
-            //    WorkTimeType = WorkTimeTypes.Night
-            //};
             PrintSchoolCourses(school);
-            //WriteLine("Course.Hash: " + tmpCourse.GetHashCode());
-            //school.Courses.Remove(tmpCourse);
-            Predicate<Course> myAlgorithm = Predicado;
-            school.Courses.RemoveAll(myAlgorithm);
+
+            //Un predicado es un delegado. Un delegado es un tipo de método que define parámetros de entrada, los de salida, y puede ser consumido como argumento
+            //school.Courses.RemoveAll(Predicado);
+            
+            //Delegado --> Para cada miembro, ejecuta la rutina. Si se cumple, elimina el objeto
+            school.Courses.RemoveAll(delegate(Course course) {
+                return course.Name.Equals("301");
+            });
+            //Expresión lambda (también un delegado)
+            //school.Courses.RemoveAll((Course course) => course.Name.Equals("301"));
+            school.Courses.RemoveAll((course) => course.Name.Equals("501") && course.WorkTimeType == WorkTimeTypes.Morning);
             PrintSchoolCourses(school);
         }
 
@@ -54,6 +56,9 @@ namespace Etapa3
             return obj.Name.Equals("301");
         }
 
+        ///<summary></summary>
+        ///
+        ///
         private static void PrintSchoolCourses(School school)
         {
             WriteLine("================");
