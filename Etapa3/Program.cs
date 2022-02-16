@@ -1,8 +1,9 @@
 ﻿using System;
-using Etapa2.Entities;
+using System.Collections.Generic;
+using Etapa3.Entities;
 using static System.Console;
 
-namespace Etapa2
+namespace Etapa3
 {
     class Program
     {
@@ -15,23 +16,27 @@ namespace Etapa2
             School secondSchool = new School("RFM", 1980, SchoolTypes.HighSchool, country: "México", city: "Ciudad de México");
             WriteLine(secondSchool);
 
-            Course[] coursesArray = {
-                new Course() { Name = "101" },
-                new Course() { Name = "201" },
-                new Course() { Name = "301" }
-            };
-            school.Courses = coursesArray;
-            
-            //Lo que sea más legible
-            secondSchool.Courses = new Course[] {
-                new Course() { Name = "101" },
-                new Course() { Name = "201" },
-                new Course() { Name = "301" }
+            var coursesList = new List<Course>(){
+                new Course() { Name = "101", WorkTimeType = WorkTimeTypes.Morning },
+                new Course() { Name = "201", WorkTimeType = WorkTimeTypes.Morning },
+                new Course() { Name = "301", WorkTimeType = WorkTimeTypes.Morning }
             };
 
+            school.Courses = coursesList;
+            school.Courses.Add(new Course() {
+                Name = "102", WorkTimeType = WorkTimeTypes.Evening
+            });
+            school.Courses.Add(new Course() {
+                Name = "202", WorkTimeType = WorkTimeTypes.Evening
+            });
+
+            var extraMorningCourses = new List<Course>(){
+                new Course() { Name = "401", WorkTimeType = WorkTimeTypes.Morning },
+                new Course() { Name = "501", WorkTimeType = WorkTimeTypes.Morning },
+                new Course() { Name = "502", WorkTimeType = WorkTimeTypes.Evening }
+            };
+            school.Courses.AddRange(extraMorningCourses);
             PrintSchoolCourses(school);
-            if(school is Course)
-                WriteLine("hola");
         }
 
         private static void PrintSchoolCourses(School school)
