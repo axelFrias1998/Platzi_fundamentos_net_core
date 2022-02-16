@@ -36,7 +36,22 @@ namespace Etapa3
                 new Course() { Name = "502", WorkTimeType = WorkTimeTypes.Evening }
             };
             school.Courses.AddRange(extraMorningCourses);
+
+            //Course tmpCourse = new Course {
+            //    Name = "101-Vacacional",
+            //    WorkTimeType = WorkTimeTypes.Night
+            //};
             PrintSchoolCourses(school);
+            //WriteLine("Course.Hash: " + tmpCourse.GetHashCode());
+            //school.Courses.Remove(tmpCourse);
+            Predicate<Course> myAlgorithm = Predicado;
+            school.Courses.RemoveAll(myAlgorithm);
+            PrintSchoolCourses(school);
+        }
+
+        private static bool Predicado(Course obj)
+        {
+            return obj.Name.Equals("301");
         }
 
         private static void PrintSchoolCourses(School school)
