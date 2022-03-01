@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using Etapa3.Entities;
+using Etapa4.Entities;
 using static System.Console;
 
-namespace Etapa3
+namespace Etapa4
 {
     class Program
     {
@@ -63,7 +63,6 @@ namespace Etapa3
         {
             WriteLine("================");
             WriteLine("Available courses");
-id_ed25519  id_ed25519.pub
             WriteLine("================");
 
             if(school?.Courses is not null)
