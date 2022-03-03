@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace Etapa4.Entities
 {
-    class School
+    public class School
     {
         /*public School(string name, int creationYear)
         {
