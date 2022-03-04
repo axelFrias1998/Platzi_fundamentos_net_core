@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Etapa4.Entities
 {
@@ -10,5 +11,9 @@ namespace Etapa4.Entities
         public string Name { get; set; }
 
         public WorkTimeTypes WorkTimeType { get; set; }
+
+        public List<Class> Classes { get ; set; }
+
+        public List<Student> Students { get; set; }
     }
 }

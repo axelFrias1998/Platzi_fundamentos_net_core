@@ -2,11 +2,11 @@ using System;
 
 namespace Etapa4.Entities
 {
-    public class Stundent
+    public class Class
     {
-        public Stundent() => StudentId = Guid.NewGuid().ToString();
+        public Class() => ClassId = Guid.NewGuid().ToString();
         
-        public string StudentId { get; private set; }
+        public string ClassId { get; private set; }
 
         public string Name { get; set; }
     }
