@@ -1,6 +1,6 @@
 using static System.Console;
 
-namespace Etapa4.Util
+namespace Etapa5.Util
 {
     public static class Printer
     {

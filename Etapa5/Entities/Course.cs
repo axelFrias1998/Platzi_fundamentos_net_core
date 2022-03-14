@@ -1,15 +1,9 @@
-using System;
 using System.Collections.Generic;
 
-namespace Etapa4.Entities
+namespace Etapa5.Entities
 {
-    public class Course
+    public class Course : BaseObject
     {
-        public Course() => CourseId = Guid.NewGuid().ToString();
-        public string CourseId { get; private set; }
-
-        public string Name { get; set; }
-
         public WorkTimeTypes WorkTimeType { get; set; }
 
         public List<Class> Classes { get ; set; }

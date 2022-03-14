@@ -1,13 +1,7 @@
-using System;
-
-namespace Etapa4.Entities
+namespace Etapa5.Entities
 {
-    public class Class
+    public class Class : BaseObject
     {
-        public Class() => ClassId = Guid.NewGuid().ToString();
-        
-        public string ClassId { get; private set; }
 
-        public string Name { get; set; }
     }
 }

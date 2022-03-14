@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using Etapa4.App;
-using Etapa4.Entities;
-using Etapa4.Util;
+using Etapa5.App;
+using Etapa5.Entities;
+using Etapa5.Util;
 using static System.Console;
 
-namespace Etapa4
+namespace Etapa5
 {
     class Program
     {
@@ -30,7 +30,7 @@ namespace Etapa4
             if(school?.Courses is not null)
             {
                 foreach (var course in school.Courses)
-                    WriteLine($"Name: {course.Name}, ID: {course.CourseId}");
+                    WriteLine($"Name: {course.Name}, ID: {course.Id}");
             }
         }
 

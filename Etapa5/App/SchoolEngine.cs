@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Etapa4.Entities;
+using Etapa5.Entities;
 
-namespace Etapa4.App
+namespace Etapa5.App
 {
     public class SchoolEngine
     {
@@ -53,7 +53,7 @@ namespace Etapa4.App
                             from n2 in secondName
                             from ln in lastName
                             select new Student { Name = $"{n} {n2} {ln}" };
-            return students.OrderBy((student) => student.StudentId).Take(size).ToList();
+            return students.OrderBy((student) => student.Id).Take(size).ToList();
         }
 
         private void LoadClasses()

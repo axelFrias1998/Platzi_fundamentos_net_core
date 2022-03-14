@@ -1,4 +1,4 @@
-namespace Etapa4.Entities
+namespace Etapa5.Entities
 {
     public enum WorkTimeTypes
     {

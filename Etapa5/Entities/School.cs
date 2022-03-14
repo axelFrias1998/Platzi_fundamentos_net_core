@@ -1,15 +1,9 @@
 using System.Collections.Generic;
 
-namespace Etapa4.Entities
+namespace Etapa5.Entities
 {
-    public class School
+    public class School : BaseObject
     {
-        /*public School(string name, int creationYear)
-        {
-            this.name = name.ToUpper();
-            CreationYear = creationYear;
-        }*/
-
         //Igualación por tuplas
         public School(string name, int foundationYear) => (Name, FoundationYear) = (name, foundationYear);
 
@@ -18,13 +12,6 @@ namespace Etapa4.Entities
            (Name, FoundationYear) = (name, foundationYear);
             Country = country;
             City = city;
-        }
-        string name;
-
-        public string Name
-        {
-            get { return name; }
-            set { name = value.ToUpper(); }
         }
 
         public int FoundationYear { get; set; }
