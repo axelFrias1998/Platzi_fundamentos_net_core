@@ -21,9 +21,9 @@ namespace Etapa4.App
         public void Init()
         {
             School = new School("RFM", 1980, SchoolTypes.HighSchool, country: "México", city: "Ciudad de México");
+            LoadCourses();
             LoadClasses();
-            foreach (var course in School.Courses)
-                course.Students.AddRange(LoadStudents());
+            LoadEvaluations();
         }
 
         private void LoadCourses()
@@ -40,37 +40,7 @@ namespace Etapa4.App
 
             Random rnd = new Random();
             foreach (var couse in School.Courses)
-            {
-
                 couse.Students = CreateRandomStudents(rnd.Next(10, 30));
-            }
-        }
-
-        private List<Student> CreateRandomEvaluations(int size)
-        {
-            var evaluations = new List<Evaluation>();
-            foreach (var course in School.Courses)
-            {
-                foreach (var clss in course.Classes)
-                {
-                    foreach (var student in course.Students)
-                    {
-                        var rnd = new Random(System.Environment.TickCount);
-
-                        for (int i = 0; i < 5; i++)
-                        {
-                            var evaluation = new Evaluation
-                            {
-                                Class = clss,
-                                Name = $"{clss.Name} Evaluation#{i + 1}",
-                                Score = (float)(5 * rnd.NextDouble()),
-                                Student = student
-                            };
-                            evaluations.Add(evaluation);
-                        }
-                    }
-                }
-            }
         }
 
         private List<Student> CreateRandomStudents(int size)
@@ -102,14 +72,28 @@ namespace Etapa4.App
 
         private void LoadEvaluations()
         {
-            School.Courses = new List<Course>(){
-                new Course() { Name = "101", WorkTimeType = WorkTimeTypes.Morning },
-                new Course() { Name = "201", WorkTimeType = WorkTimeTypes.Morning },
-                new Course() { Name = "301", WorkTimeType = WorkTimeTypes.Morning },
-                new Course() { Name = "401", WorkTimeType = WorkTimeTypes.Morning },
-                new Course() { Name = "501", WorkTimeType = WorkTimeTypes.Evening },
-                new Course() { Name = "502", WorkTimeType = WorkTimeTypes.Evening }
-            };
+            foreach (var course in School.Courses)
+            {
+                foreach (var clss in course.Classes)
+                {
+                    foreach (var student in course.Students)
+                    {
+                        var rnd = new Random(System.Environment.TickCount);
+
+                        for (int i = 0; i < 5; i++)
+                        {
+                            var evaluation = new Evaluation
+                            {
+                                Class = clss,
+                                Name = $"{clss.Name} Evaluation#{i + 1}",
+                                Score = (float)(5 * rnd.NextDouble()),
+                                Student = student
+                            };
+                            student.Evaluations.Add(evaluation);
+                        }
+                    }
+                }
+            }
         }
     }
 }

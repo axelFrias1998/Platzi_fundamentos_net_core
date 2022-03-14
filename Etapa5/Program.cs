@@ -11,7 +11,6 @@ namespace Etapa4
     {
         static void Main(string[] args)
         {
-            Printer.PrintTitle("Available courses");
             SchoolEngine engine = new SchoolEngine();
             engine.Init();
             Printer.PrintTitle("WELCOME");

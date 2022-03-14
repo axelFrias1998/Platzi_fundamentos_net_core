@@ -11,6 +11,6 @@ namespace Etapa4.Entities
 
         public string Name { get; set; }
 
-        public List<Evaluation> Evaluations { get; set; }
+        public List<Evaluation> Evaluations { get; set; } = new List<Evaluation>();
     }
 }
