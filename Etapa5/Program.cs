@@ -16,17 +16,7 @@ namespace Etapa5
             Printer.PrintTitle("WELCOME");
             PrintSchoolCourses(engine.School);
 
-            Printer.PrintTitle("Pruebas polimorfismo");
-            var student = new Student
-            {
-                Name = "Axelito mixxx"
-            };
-            BaseObject ob = student;
-            Printer.PrintTitle("Alumno");
-            WriteLine($"ID: {student.Id}. Alumno: {student.Name}");
-            
-            Printer.PrintTitle("Base object");
-            WriteLine($"ID: {ob.Id}. Alumno: {ob.Name}");
+            var objList = engine.GetBaseObjects();
         }
 
         private static bool Predicado(Course obj)

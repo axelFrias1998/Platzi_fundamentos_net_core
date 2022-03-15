@@ -7,5 +7,10 @@ namespace Etapa5.Entities
         public Class Class { get; set; }
 
         public float Score { get; set; }
+
+        public override string ToString()
+        {
+            return $"{Score}, {Student.Name}, {Class.Name}";
+        }
     }
 }

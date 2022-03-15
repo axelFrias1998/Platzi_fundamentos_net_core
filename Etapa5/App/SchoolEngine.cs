@@ -96,5 +96,23 @@ namespace Etapa5.App
                 }
             }
         }
+
+        public List<BaseObject> GetBaseObjects()
+        {
+            var objList = new List<BaseObject>();
+            objList.Add(School);
+            objList.AddRange(School.Courses);
+            foreach (var course in School.Courses)
+            {
+                objList.AddRange(course.Classes);
+                objList.AddRange(course.Students);
+
+                foreach (var student in course.Students)
+                {
+                    objList.AddRange(student.Evaluations);
+                }
+            }
+            return objList;
+        }
     }
 }

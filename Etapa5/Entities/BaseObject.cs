@@ -9,5 +9,11 @@ namespace Etapa5.Entities
         public string Id { get; private set; }
 
         public string Name { get; set; }
+
+        public override string ToString()
+        {
+            return $"{Name}, {Id}";
+        }
+
     }
 }
