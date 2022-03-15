@@ -2,7 +2,7 @@ using System;
 
 namespace Etapa5.Entities
 {
-    public class BaseObject
+    public abstract class BaseObject
     {
         public BaseObject() => Id = Guid.NewGuid().ToString();
         

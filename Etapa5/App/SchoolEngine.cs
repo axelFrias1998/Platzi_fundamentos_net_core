@@ -5,7 +5,8 @@ using Etapa5.Entities;
 
 namespace Etapa5.App
 {
-    public class SchoolEngine
+    //Sealed --> Se pueden crear instancias de, pero no heredar de ella
+    public sealed class SchoolEngine
     {
         /*
         Carga aleatoria de evaluaciones
