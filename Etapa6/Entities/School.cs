@@ -1,8 +1,9 @@
 using System.Collections.Generic;
+using Etapa6.Util;
 
 namespace Etapa6.Entities
 {
-    public class School : BaseObject
+    public class School : BaseObject, IPlace
     {
         //Igualación por tuplas
         public School(string name, int foundationYear) => (Name, FoundationYear) = (name, foundationYear);
@@ -22,8 +23,20 @@ namespace Etapa6.Entities
 
         public SchoolTypes SchoolType { get; set; }
 
+        public string Address { get; set; }
+
         public List<Course> Courses { get; set; }
-        
+
+        public void CleanAddress()
+        {
+            Printer.PrintTitle($"School {Name} is clean");
+            Printer.PrintTitle($"Cleaning courses ...");
+            foreach (var course in Courses)
+            {
+                course.CleanAddress();
+            }
+        }
+
         public override string ToString()
         {
             return $"Name: {Name}\nType: {SchoolType}\nCountry: {Country}\nFoundation Year: {FoundationYear}";
