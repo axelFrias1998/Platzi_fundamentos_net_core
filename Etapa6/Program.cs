@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Etapa6.App;
 using Etapa6.Entities;
 using Etapa6.Util;
@@ -17,6 +18,20 @@ namespace Etapa6
             PrintSchoolCourses(engine.School);
 
             var objList = engine.GetBaseObjects();
+
+            //Todos los objetos que cumplan con esas características (un contrato)
+            var listIPlace = from obj in objList
+                                where obj is IPlace
+                                select (IPlace)obj;
+            
+            var listStudent = from obj in objList
+                                where obj is Student
+                                select (Student)obj;
+
+            //ERROR SILENCIOSO y PELIGROSO
+            //var listIPlace = from obj in objList
+            //                    select (IPlace)obj;
+            //            engine.School.CleanAddress();
         }
 
         private static bool Predicado(Course obj)

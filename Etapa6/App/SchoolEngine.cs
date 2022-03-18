@@ -27,21 +27,22 @@ namespace Etapa6.App
             LoadEvaluations();
         }
 
-        private void LoadCourses()
+        public List<BaseObject> GetBaseObjects()
         {
-            
-            School.Courses = new List<Course>(){
-                new Course() { Name = "101", WorkTimeType = WorkTimeTypes.Morning },
-                new Course() { Name = "201", WorkTimeType = WorkTimeTypes.Morning },
-                new Course() { Name = "301", WorkTimeType = WorkTimeTypes.Morning },
-                new Course() { Name = "401", WorkTimeType = WorkTimeTypes.Morning },
-                new Course() { Name = "501", WorkTimeType = WorkTimeTypes.Evening },
-                new Course() { Name = "502", WorkTimeType = WorkTimeTypes.Evening }
-            };
+            var objList = new List<BaseObject>();
+            objList.Add(School);
+            objList.AddRange(School.Courses);
+            foreach (var course in School.Courses)
+            {
+                objList.AddRange(course.Classes);
+                objList.AddRange(course.Students);
 
-            Random rnd = new Random();
-            foreach (var couse in School.Courses)
-                couse.Students = CreateRandomStudents(rnd.Next(10, 30));
+                foreach (var student in course.Students)
+                {
+                    objList.AddRange(student.Evaluations);
+                }
+            }
+            return objList;
         }
 
         private List<Student> CreateRandomStudents(int size)
@@ -57,6 +58,7 @@ namespace Etapa6.App
             return students.OrderBy((student) => student.Id).Take(size).ToList();
         }
 
+        #region Load info
         private void LoadClasses()
         {
             foreach (var course in School.Courses)
@@ -69,6 +71,23 @@ namespace Etapa6.App
                 };
                 course.Classes = classes;
             }
+        }
+
+        private void LoadCourses()
+        {
+            
+            School.Courses = new List<Course>(){
+                new Course() { Name = "101", WorkTimeType = WorkTimeTypes.Morning },
+                new Course() { Name = "201", WorkTimeType = WorkTimeTypes.Morning },
+                new Course() { Name = "301", WorkTimeType = WorkTimeTypes.Morning },
+                new Course() { Name = "401", WorkTimeType = WorkTimeTypes.Morning },
+                new Course() { Name = "501", WorkTimeType = WorkTimeTypes.Evening },
+                new Course() { Name = "502", WorkTimeType = WorkTimeTypes.Evening }
+            };
+
+            Random rnd = new Random();
+            foreach (var couse in School.Courses)
+                couse.Students = CreateRandomStudents(rnd.Next(10, 30));
         }
 
         private void LoadEvaluations()
@@ -95,24 +114,7 @@ namespace Etapa6.App
                     }
                 }
             }
-        }
-
-        public List<BaseObject> GetBaseObjects()
-        {
-            var objList = new List<BaseObject>();
-            objList.Add(School);
-            objList.AddRange(School.Courses);
-            foreach (var course in School.Courses)
-            {
-                objList.AddRange(course.Classes);
-                objList.AddRange(course.Students);
-
-                foreach (var student in course.Students)
-                {
-                    objList.AddRange(student.Evaluations);
-                }
-            }
-            return objList;
-        }
+        }   
+        #endregion
     }
 }
