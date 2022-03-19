@@ -17,14 +17,14 @@ namespace Etapa7
             Printer.PrintTitle("WELCOME");
             PrintSchoolCourses(engine.School);
 
-            var objList = engine.GetBaseObjects();
+            var objList = engine.GetBaseObjects(false, false, false, false);
 
             //Todos los objetos que cumplan con esas características (un contrato)
-            var listIPlace = from obj in objList
+            var listIPlace = from obj in objList.Item1
                                 where obj is IPlace
                                 select (IPlace)obj;
             
-            var listStudent = from obj in objList
+            var listStudent = from obj in objList.Item1
                                 where obj is Student
                                 select (Student)obj;
 

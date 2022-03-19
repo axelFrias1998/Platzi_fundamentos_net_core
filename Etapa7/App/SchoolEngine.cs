@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Etapa7.Entities;
 
-namespace Etapa6.App
+namespace Etapa7.App
 {
     //Sealed --> Se pueden crear instancias de, pero no heredar de ella
     public sealed class SchoolEngine
@@ -27,7 +27,43 @@ namespace Etapa6.App
             LoadEvaluations();
         }
 
-        public List<BaseObject> GetBaseObjects()
+        public (List<BaseObject>, int) GetBaseObjects(out int countEvaluations, out int countStudents, out int countClasses, out int countCourses,
+                                                        bool hasEvaluations = true, bool hasStudents = true, bool hasClasses = true, bool hasCourses = true)
+        {
+            countEvaluations = countStudents = countClasses = 0; 
+            
+            var objList = new List<BaseObject>();
+            objList.Add(School);
+            if(hasCourses)
+                objList.AddRange(School.Courses);
+
+            countCourses = School.Courses.Count;
+
+            foreach (var course in School.Courses)
+            {
+                countCourses += course.Classes.Count;
+                countStudents += course.Students.Count;
+
+                if(hasClasses)
+                    objList.AddRange(course.Classes);
+
+                if(hasStudents)
+                    objList.AddRange(course.Students);
+
+                if(hasEvaluations)
+                {
+                    foreach (var student in course.Students)
+                    {
+                        objList.AddRange(student.Evaluations);
+                        countEvaluations += student.Evaluations.Count;
+                    }
+                }
+            }
+                
+            return (objList, countEvaluations);
+        }
+
+        /*public List<BaseObject> GetBaseObjects()
         {
             var objList = new List<BaseObject>();
             objList.Add(School);
@@ -43,7 +79,7 @@ namespace Etapa6.App
                 }
             }
             return objList;
-        }
+        }*/
 
         private List<Student> CreateRandomStudents(int size)
         {
