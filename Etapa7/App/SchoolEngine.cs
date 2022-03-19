@@ -41,7 +41,7 @@ namespace Etapa7.App
 
             foreach (var course in School.Courses)
             {
-                countCourses += course.Classes.Count;
+                countClasses += course.Classes.Count;
                 countStudents += course.Students.Count;
 
                 if(hasClasses)

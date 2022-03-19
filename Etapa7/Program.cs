@@ -17,7 +17,9 @@ namespace Etapa7
             Printer.PrintTitle("WELCOME");
             PrintSchoolCourses(engine.School);
 
-            var objList = engine.GetBaseObjects(false, false, false, false);
+            //int dummy = 0;
+            //var objList = engine.GetBaseObjects(out int countEvaluations, out dummy, out dummy, out dummy);
+            var objList = engine.GetBaseObjects(out int countEvaluations, out int countStudents, out int countClasses, out int countCourses);
 
             //Todos los objetos que cumplan con esas características (un contrato)
             var listIPlace = from obj in objList.Item1
