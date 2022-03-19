@@ -27,27 +27,27 @@ namespace Etapa7.App
             LoadEvaluations();
         }
 
-        public (List<BaseObject>, int) GetBaseObjects(bool hasEvaluations = true, bool hasStudents = true, bool hasClasses = true, bool hasCourses = true)
+        public IReadOnlyList<BaseObject> GetBaseObjects(bool hasEvaluations = true, bool hasStudents = true, bool hasClasses = true, bool hasCourses = true)
         {                            
             return GetBaseObjects(out int dummy, out dummy, out dummy, out dummy);
         }
 
-        public (List<BaseObject>, int) GetBaseObjects(out int countEvaluations, bool hasEvaluations = true, bool hasStudents = true, bool hasClasses = true, bool hasCourses = true)
+        public IReadOnlyList<BaseObject> GetBaseObjects(out int countEvaluations, bool hasEvaluations = true, bool hasStudents = true, bool hasClasses = true, bool hasCourses = true)
         {                            
             return GetBaseObjects(out countEvaluations, out int dummy, out dummy, out dummy);
         }
 
-        public (List<BaseObject>, int) GetBaseObjects(out int countEvaluations, out int countStudents, bool hasEvaluations = true, bool hasStudents = true, bool hasClasses = true, bool hasCourses = true)
+        public IReadOnlyList<BaseObject> GetBaseObjects(out int countEvaluations, out int countStudents, bool hasEvaluations = true, bool hasStudents = true, bool hasClasses = true, bool hasCourses = true)
         {                            
             return GetBaseObjects(out countEvaluations, out countStudents, out int dummy, out dummy);
         }
 
-        public (List<BaseObject>, int) GetBaseObjects(out int countEvaluations, out int countStudents, out int countClasses, bool hasEvaluations = true, bool hasStudents = true, bool hasClasses = true, bool hasCourses = true)
-        {                            
+        public IReadOnlyList<BaseObject> GetBaseObjects(out int countEvaluations, out int countStudents, out int countClasses, bool hasEvaluations = true, bool hasStudents = true, bool hasClasses = true, bool hasCourses = true)
+        {                        
             return GetBaseObjects(out countEvaluations, out countStudents, out countClasses, out int dummy);
         }
         
-        public (List<BaseObject>, int) GetBaseObjects(out int countEvaluations, out int countStudents, out int countClasses, out int countCourses,
+        public IReadOnlyList<BaseObject> GetBaseObjects(out int countEvaluations, out int countStudents, out int countClasses, out int countCourses,
                                                         bool hasEvaluations = true, bool hasStudents = true, bool hasClasses = true, bool hasCourses = true)
         {
             countEvaluations = countStudents = countClasses = 0; 
@@ -80,7 +80,7 @@ namespace Etapa7.App
                 }
             }
                 
-            return (objList, countEvaluations);
+            return objList.AsReadOnly();
         }
 
         /*public List<BaseObject> GetBaseObjects()
