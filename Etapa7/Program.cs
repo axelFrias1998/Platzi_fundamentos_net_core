@@ -33,20 +33,8 @@ namespace Etapa7
             var listIPlace = from obj in objList
                                 select (IPlace)obj;
                         engine.School.CleanAddress();*/
-            Dictionary<int, string> dictionary = new Dictionary<int, string>();
-            dictionary.Add(10, "Axel");
-            dictionary.Add(20, "Lizeth");
-            foreach (var keyValuePair in dictionary)
-            {
-                WriteLine($"Key: {keyValuePair.Key}. Value: {keyValuePair.Value}");
-            }
-            Printer.PrintTitle("Access to dictionary");
-            WriteLine(dictionary[20]);
-
-            Printer.PrintTitle("Another dictionary");
-            var dict = new Dictionary<string, string>();
-            dict["Moon"] = "Cuerpo celeste";
-            WriteLine(dict["Moon"]);
+            var dictionary = engine.GetDictionaryObj();
+            WriteLine(dictionary);
         }
 
         private static bool Predicado(Course obj)

@@ -26,7 +26,17 @@ namespace Etapa7.App
             LoadClasses();
             LoadEvaluations();
         }
-        
+
+        public Dictionary<string, IEnumerable<BaseObject>> GetDictionaryObj()
+        {
+            var dictionary = new Dictionary<string, IEnumerable<BaseObject>>();
+            
+            dictionary.Add("School", new[] { School });
+            dictionary.Add("Courses", School.Courses.Cast<BaseObject>());
+
+            return dictionary;
+        }
+
         public IReadOnlyList<BaseObject> GetBaseObjects(bool hasEvaluations = true, bool hasStudents = true, bool hasClasses = true, bool hasCourses = true)
         {                            
             return GetBaseObjects(out int dummy, out dummy, out dummy, out dummy);
