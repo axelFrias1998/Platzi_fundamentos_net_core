@@ -26,7 +26,7 @@ namespace Etapa7.App
             LoadClasses();
             LoadEvaluations();
         }
-
+        
         public IReadOnlyList<BaseObject> GetBaseObjects(bool hasEvaluations = true, bool hasStudents = true, bool hasClasses = true, bool hasCourses = true)
         {                            
             return GetBaseObjects(out int dummy, out dummy, out dummy, out dummy);
