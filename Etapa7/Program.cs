@@ -12,6 +12,12 @@ namespace Etapa7
     {
         static void Main(string[] args)
         {
+            //Evento con flujo normal de término
+            AppDomain.CurrentDomain.ProcessExit += ActionEvent;
+            //Acumula cualquier cantidad de delegados
+            AppDomain.CurrentDomain.ProcessExit += (sender, e) => Printer.PrintTitle("Con lambda");
+            //AppDomain.CurrentDomain.ProcessExit -= ActionEvent;
+
             SchoolEngine engine = new SchoolEngine();
             engine.Init();
             Printer.PrintTitle("WELCOME");
@@ -37,6 +43,11 @@ namespace Etapa7
             engine.PrintDictionary(dictionary, true);
 
             
+        }
+
+        private static void ActionEvent(object sender, EventArgs e)
+        {
+            Printer.PrintTitle("FIN");
         }
 
         private static bool Predicado(Course obj)
