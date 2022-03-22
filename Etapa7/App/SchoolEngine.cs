@@ -1,19 +1,15 @@
+using static System.Console;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using Etapa7.Entities;
+using Etapa7.Util;
 
 namespace Etapa7.App
 {
     //Sealed --> Se pueden crear instancias de, pero no heredar de ella
     public sealed class SchoolEngine
     {
-        /*
-        Carga aleatoria de evaluaciones
-        5 evaluaciones x asignatura
-        Por cada alumno de cada curso
-        Notas al azar entre 0 y 5
-        */
         public School School { get; set; }
         public SchoolEngine()
         {
@@ -32,11 +28,41 @@ namespace Etapa7.App
             var dictionary = new Dictionary<Keys, IEnumerable<BaseObject>>();
             
             dictionary.Add(Keys.School, new[] { School });
+            //Checar covarianza y contravarianza dictionary.Add(Keys.Courses, School.Courses.Cast<BaseObject>());           
             dictionary.Add(Keys.Courses, School.Courses);
+
+            var tempEvaluations = new List<Evaluation>();
+            var tempClasses = new List<Class>();
+            var tempStudents = new List<Student>();
+
+            foreach (var course in School.Courses)
+            {
+                tempStudents.AddRange(course.Students);
+                tempClasses.AddRange(course.Classes);
+
+                foreach (var student in course.Students)
+                    tempEvaluations.AddRange(student.Evaluations);
+            }
+            dictionary.Add(Keys.Students, tempStudents);
+            dictionary.Add(Keys.Classes, tempClasses);
+            dictionary.Add(Keys.Evaluations, tempEvaluations);
 
             return dictionary;
         }
 
+        public void PrintDictionary(Dictionary<Keys, IEnumerable<BaseObject>> dictionary)
+        {
+            foreach (var item in dictionary)
+            {
+                Printer.PrintTitle(item.Key.ToString());
+                foreach (var value in item.Value)
+                {
+                    WriteLine(value);   
+                }
+            }
+        }
+
+        #region Base object
         public IReadOnlyList<BaseObject> GetBaseObjects(bool hasEvaluations = true, bool hasStudents = true, bool hasClasses = true, bool hasCourses = true)
         {                            
             return GetBaseObjects(out int dummy, out dummy, out dummy, out dummy);
@@ -110,7 +136,9 @@ namespace Etapa7.App
             }
             return objList;
         }*/
+        #endregion
 
+        #region Load info
         private List<Student> CreateRandomStudents(int size)
         {
             string[] name = { "Alba", "Felipa", "Eusebio", "Farid", "Donald", "Alvaro", "Nicolás" };
@@ -124,7 +152,6 @@ namespace Etapa7.App
             return students.OrderBy((student) => student.Id).Take(size).ToList();
         }
 
-        #region Load info
         private void LoadClasses()
         {
             foreach (var course in School.Courses)

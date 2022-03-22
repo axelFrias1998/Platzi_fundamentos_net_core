@@ -34,7 +34,9 @@ namespace Etapa7
                                 select (IPlace)obj;
                         engine.School.CleanAddress();*/
             var dictionary = engine.GetDictionaryObj();
-            WriteLine(dictionary);
+            engine.PrintDictionary(dictionary);
+
+            
         }
 
         private static bool Predicado(Course obj)
