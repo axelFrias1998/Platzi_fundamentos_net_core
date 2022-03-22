@@ -34,7 +34,7 @@ namespace Etapa7
                                 select (IPlace)obj;
                         engine.School.CleanAddress();*/
             var dictionary = engine.GetDictionaryObj();
-            engine.PrintDictionary(dictionary);
+            engine.PrintDictionary(dictionary, true);
 
             
         }

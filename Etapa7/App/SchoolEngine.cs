@@ -50,14 +50,37 @@ namespace Etapa7.App
             return dictionary;
         }
 
-        public void PrintDictionary(Dictionary<Keys, IEnumerable<BaseObject>> dictionary)
+        public void PrintDictionary(Dictionary<Keys, IEnumerable<BaseObject>> dictionary, bool printEvaluations = false)
         {
             foreach (var item in dictionary)
             {
                 Printer.PrintTitle(item.Key.ToString());
                 foreach (var value in item.Value)
                 {
-                    WriteLine(value);   
+                    switch (item.Key)
+                    {
+                        case Keys.Evaluations:
+                            if(printEvaluations)
+                                WriteLine(value);   
+                            break;
+                        case Keys.School:
+                            WriteLine($"School: {value}");  
+                            break;
+                        case Keys.Students:
+                            WriteLine($"Alumno: {value}");   
+                            break;
+                        case Keys.Courses:
+                            var tmpCourse = value as Course;
+                            if(tmpCourse is not null)
+                            {
+                                int count = ((Course)value).Students.Count;
+                                WriteLine($"Curso: {value.Name}. Cantidad de alumnos: {count}");
+                            }
+                            break;
+                        default:
+                            WriteLine(value);
+                            break;
+                    }
                 }
             }
         }
@@ -199,7 +222,7 @@ namespace Etapa7.App
                             {
                                 Class = clss,
                                 Name = $"{clss.Name} Evaluation#{i + 1}",
-                                Score = (float)(5 * rnd.NextDouble()),
+                                Score = MathF.Round((float)(5 * rnd.NextDouble()), 2),
                                 Student = student
                             };
                             student.Evaluations.Add(evaluation);
