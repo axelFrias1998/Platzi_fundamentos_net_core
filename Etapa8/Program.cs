@@ -42,7 +42,7 @@ namespace Etapa8
             var dictionary = engine.GetDictionaryObj();
             engine.PrintDictionary(dictionary, true);
 
-            
+            var report = new Report(null);
         }
 
         private static void ActionEvent(object sender, EventArgs e)

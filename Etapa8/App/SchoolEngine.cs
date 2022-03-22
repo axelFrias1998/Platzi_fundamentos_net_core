@@ -2,10 +2,10 @@ using static System.Console;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Etapa7.Entities;
-using Etapa7.Util;
+using Etapa8.Entities;
+using Etapa8.Util;
 
-namespace Etapa7.App
+namespace Etapa8.App
 {
     //Sealed --> Se pueden crear instancias de, pero no heredar de ella
     public sealed class SchoolEngine
