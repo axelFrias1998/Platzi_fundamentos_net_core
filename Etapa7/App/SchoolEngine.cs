@@ -27,12 +27,12 @@ namespace Etapa7.App
             LoadEvaluations();
         }
 
-        public Dictionary<string, IEnumerable<BaseObject>> GetDictionaryObj()
+        public Dictionary<Keys, IEnumerable<BaseObject>> GetDictionaryObj()
         {
-            var dictionary = new Dictionary<string, IEnumerable<BaseObject>>();
+            var dictionary = new Dictionary<Keys, IEnumerable<BaseObject>>();
             
-            dictionary.Add("School", new[] { School });
-            dictionary.Add("Courses", School.Courses.Cast<BaseObject>());
+            dictionary.Add(Keys.School, new[] { School });
+            dictionary.Add(Keys.Courses, School.Courses);
 
             return dictionary;
         }
