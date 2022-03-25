@@ -42,7 +42,11 @@ namespace Etapa8
             var dictionary = engine.GetDictionaryObj();
             engine.PrintDictionary(dictionary, true);
 
-            var report = new Report(null);
+            var report = new Report(dictionary);
+            var evaluationsList = report.GetEvaluationsList();
+            var classesList = report.GetClassesList();
+            var evaluationByClass = report.GetEvaluationDictionaryByClass();
+            var averageByClass = report.GetAverageEvaluationByClass();
         }
 
         private static void ActionEvent(object sender, EventArgs e)
